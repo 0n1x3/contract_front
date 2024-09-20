@@ -63,8 +63,8 @@ function App() {
           <hr />
           {connected ? (
             <>
-              <p>Increment contract balance by 5, with 0.05 TON as a commission</p>
-              <a onClick={sendIncrement}>Increment by 5</a>
+              <p>Increment counter by1, with 0.05 TON as a commission</p>
+              <a onClick={sendIncrement}>Increment by 1</a>
               <hr />
               <p>Deposit 1 TON to contract balance</p>
               <a onClick={sendDeposit}>Request deposit of 1 TON</a>
