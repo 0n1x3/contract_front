@@ -3,6 +3,7 @@ import { TonConnectButton } from "@tonconnect/ui-react";
 import { useMainContract } from "./hooks/useMainContract";
 import { useTonConnect } from "./hooks/useTonConnect";
 import { fromNano } from "ton-core";
+import WebApp from "@twa-dev/sdk";
 
 function App() {
   const {
@@ -17,26 +18,30 @@ function App() {
   } = useMainContract();
   const { connected } = useTonConnect();
 
+  const showAlert = () => {
+    WebApp.showAlert("Hey there!");
+  };
+
   return (
     <div>
       <TonConnectButton />
       <div className="container">
-        <div>
+        <div className="Card">
           <h3>Contract Data:</h3>
+          <b>{WebApp.platform}</b>
           <b>Our contract Address:</b>
-          <div className="Hint">{contract_address}</div>
+          <div className="Hint">{contract_address?.slice(0, 30) + "..."}</div>
           <hr />
           <b>Our contract Owner:</b>
           <div className="Hint">{owner_address?.toString()}</div>
           <hr />
-          <hr />
-          <b>Баланс нашего контракта:</b>
+          <b>Our contract Balance:</b>
           <div className="Hint">
             {(() => {
-              if (contract_balance == null) return 'Загрузка...';
+              if (contract_balance == null) return 'Loading...';
               if (typeof contract_balance === 'bigint') return fromNano(contract_balance).toString();
               if (typeof contract_balance === 'string') return contract_balance;
-              return 'Неизвестный формат баланса';
+              return 'Unknown balance format';
             })()}
           </div>
           <hr />
@@ -52,18 +57,20 @@ function App() {
             <div>{counter_value ?? "Loading..."}</div>
           </>
         </div>
-        <div>
+        <div className="Card">
           <h3>Contract actions: </h3>
+          <a onClick={showAlert}>Show Alert</a>
+          <hr />
           {connected ? (
             <>
               <p>Increment contract balance by 5, with 0.05 TON as a commission</p>
-              <button onClick={sendIncrement}>Increment</button>
+              <a onClick={sendIncrement}>Increment by 5</a>
               <hr />
               <p>Deposit 1 TON to contract balance</p>
-              <button onClick={sendDeposit}>Deposit</button>
+              <a onClick={sendDeposit}>Request deposit of 1 TON</a>
               <hr />
               <p>Withdraw 0.2 TON from contract balance</p>
-              <button onClick={sendWithdrawal}>Withdraw</button>
+              <a onClick={sendWithdrawal}>Request 0.2 TON withdrawal</a>
               <hr />
             </>
           ) : (
@@ -72,13 +79,13 @@ function App() {
         </div>
         <div>
           <a
-            href="https://testnet.tonscan.org/address/EQDAbnsqALKAoQO5uS1qOI8X7OhkeDnv3hZiqg2VAqhPa6xN"
+            href="https://testnet.tonscan.org/address/EQA61oM8a0n9zb13HmDCflApbLrK4lMj8s8KITqDyzEyslfK"
             target="_blank"
+            rel="noopener noreferrer"
           >
             explorer
           </a>
           <br />
-          
         </div>
       </div>
     </div>

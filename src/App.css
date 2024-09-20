@@ -1,42 +1,69 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+.App {
   text-align: center;
+  padding: 20px;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.Container {
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.Header {
+  margin-bottom: 20px;
+}
+
+.Content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.Card {
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.Hint {
+  font-size: 0.9em;
+  color: #666;
+  word-break: break-all;
+}
+
+.Button {
+  background-color: #0088cc;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 5px;
+}
+
+.Button:hover {
+  background-color: #006699;
+}
+
+.Actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Медиа-запрос для мобильных устройств */
+@media (max-width: 600px) {
+  .App {
+    padding: 10px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .Card {
+    padding: 15px;
   }
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  .Button {
+    width: 100%;
+    padding: 15px;
   }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }
